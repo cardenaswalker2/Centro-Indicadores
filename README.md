@@ -1,30 +1,30 @@
 # 📊 Centro de Indicadores & Gestión de Desempeño
 
-Una plataforma web profesional, moderna y ligera diseñada para la monitorización de **KPIs operativos, control de metas, análisis de tendencias y gestión de planes de acción** para plantas de producción, logística y áreas corporativas.
+Una plataforma web profesional, ligera y organizada diseñada para la monitorización de **KPIs operativos, control de metas, análisis de tendencias y gestión de planes de acción** para plantas de producción, logística y áreas corporativas.
 
 ---
 
 ## 🌟 Características Principales
 
-### 1. 📈 Tablero General Ejecutivo (Dashboard)
-- Vista panorámica con estado consolidado del cumplimiento por área (Producción, Logística, Gestión Humana, etc.).
-- Tarjetas interactivas de KPIs con semáforo configurable (*Cumple*, *En riesgo*, *No cumple* o *Sin dato*).
+### 1. 📈 Tablero General de Desempeño
+- Vista consolidada con estado acumulado del cumplimiento por área (Producción, Logística, Gestión Humana, etc.).
+- Tarjetas de KPIs con semáforo configurable (*Cumple*, *En riesgo*, *No cumple* o *Sin dato*).
 - Barras de estado ponderadas por plantas y unidades operativas.
 
 ### 2. 🔍 Diagnóstico Analítico y Tendencias
-- Filtro multidimensional por Área, Planta/Sede, Indicador y selección múltiple de periodos o trimestres (T1, T2, Semestres).
+- Filtro por Área, Planta/Sede, Indicador y selección múltiple de periodos o trimestres (T1, T2, Semestres).
 - Gráficos vectoriales SVG dinámicos sin librerías pesadas, con proyección lineal (*Tendencia mejorando, estable o deteriorando*).
 - Comparativa histórica multianual (ej: 2026 vs 2025 vs 2024).
 
-### 3. 🛠️ Bitácora de Causas y Planes de Acción
-- Registro directo en tabla con **autoguardado** inmediato.
-- Gestión de ciclo de vida de contramedidas (*Abierto*, *En curso*, *Cerrado*, *Vencido*).
-- Matriz de calor y ranking de causas raíz recurrentes.
+### 3. 🛠️ Causas y Planes de Acción
+- Registro directo en tabla con autoguardado inmediato.
+- Gestión de compromisos de mejora (*Abierto*, *En curso*, *Cerrado*, *Vencido*).
+- Matriz de seguimiento mensual y causas recurrentes.
 
 ### 4. ✍️ Hoja de Captura Mensual Ágil
 - Entrada rápida con teclado (navegación con `Enter` entre métricas).
-- Función "Repetir mes previo" para agilizar el diligenciamiento.
-- Asociación directa de planes de acción para métricas fuera de meta.
+- Función "Copiar mes anterior" para agilizar el diligenciamiento.
+- Asociación directa de causas y planes para métricas fuera de meta.
 
 ### 5. 🎯 Planificación de Metas
 - Metas anuales con desglose y prorrateo automático mes a mes.
@@ -35,9 +35,9 @@ Una plataforma web profesional, moderna y ligera diseñada para la monitorizaci�
 - Importador nativo sin librerías externas que analiza y valida las hojas antes de aplicar cambios.
 - Exportación del libro de control completo en Excel con un solo clic.
 
-### 7. 🌓 Experiencia de Usuario y Tema
-- Interfaz moderna en modo oscuro (*Dark Mode*) y modo claro (*Light Mode*).
-- Diseño totalmente responsivo adaptable a monitores ejecutivos, portátiles y tabletas.
+### 7. 🎨 Diseño Visual Limpio y Corporativo
+- Interfaz clara, pulida y organizada basada en el diseño original en tonos blancos y grises de alta legibilidad.
+- Diseño totalmente responsivo adaptable a computadoras, portátiles y tabletas.
 
 ---
 

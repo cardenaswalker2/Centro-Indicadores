@@ -1056,54 +1056,15 @@ export function viewCat() {
 
 /* ============ VISTA 8: CONFIGURACIÓN ============ */
 export function viewCfg() {
-  const isDark = DB.settings.theme !== 'light';
-  return `
-  <div class="grid g2">
-    <div class="card">
-      <h3>${icon('factory')} Estructura de Áreas, Plantas y Sedes</h3>
-      <p class="sub" style="color:var(--text-secondary);margin-bottom:14px">Define las áreas de tu compañía y si se dividen por plantas, logísticas o líneas.</p>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        ${DB.areas.map(a => `
-          <div style="display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--line-dim);border-radius:var(--radius-md);background:var(--bg-card-hover)">
-            <div style="width:36px;height:36px;border-radius:var(--radius-sm);background:${a.color}20;color:${a.color};display:grid;place-items:center">${icon(a.icon)}</div>
-            <div style="flex:1">
-              <b style="font-size:14px">${esc(a.name)}</b>
-              <div class="small" style="color:var(--text-muted)">${hasUnits(a) ? `${a.units.length} ${unitsWord(a)}: ${a.units.map(u => u.name).join(', ')}` : 'Sin subdivisiones'}</div>
-            </div>
-            <button class="btn sm icon ghost" data-act="areaEdit" data-id="${a.id}">${icon('edit')}</button>
-            <button class="btn sm icon ghost danger" data-act="areaDel" data-id="${a.id}">${icon('trash')}</button>
-          </div>`).join('')}
-      </div>
-      <div style="margin-top:16px"><button class="btn primary sm" data-act="areaNew">${icon('plus')} Agregar Nueva Área</button></div>
-    </div>
-    
-    <div class="card">
-      <h3>${icon('sliders')} Parámetros y Preferencias</h3>
-      <p class="sub" style="color:var(--text-secondary);margin-bottom:14px">Ajustes visuales y tolerancias para el semáforo gerencial.</p>
-      
-      <div style="margin-bottom:18px">
-        <label class="field" style="margin-bottom:6px">Tema de la interfaz</label>
-        <button class="btn" data-act="toggleTheme">${icon(isDark ? 'sun' : 'moon')} Modo ${isDark ? 'Claro' : 'Oscuro'}</button>
-      </div>
-
-      <div>
-        <label class="field inline">Margen de Tolerancia (%)
-          <input type="number" min="0" max="50" step="0.5" style="width:84px" value="${DB.settings.tol}" data-bind="tol">
-        </label>
-        <p class="small" style="color:var(--text-muted);margin-top:6px">Un indicador dentro de este margen respecto a la meta se categoriza en estado <b>"En riesgo"</b> (amarillo).</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card mt">
-    <h3>${icon('save')} Respaldo y Gestión de Base de Datos</h3>
-    <p class="sub" style="color:var(--text-secondary);margin-bottom:14px">Todos los datos se guardan de forma local en tu navegador. Puedes generar copias de seguridad o exportar informes consolidados.</p>
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <button class="btn primary" data-act="backup">${icon('download')} Descargar Respaldo JSON</button>
-      <button class="btn" data-act="restore">${icon('upload')} Restaurar desde JSON</button>
-      <button class="btn" data-act="expAll">${icon('sheet')} Exportar Libro Completo a Excel</button>
-      <button class="btn" data-act="demo">${icon('refresh')} Cargar Datos de Demostración</button>
-      <button class="btn danger" data-act="clearData">${icon('trash')} Limpiar Mediciones y Planes</button>
-    </div>
-  </div>`;
+  return `<div class="grid g2">
+   <div class="card"><h3>${icon('factory')}Áreas, plantas y logísticas</h3><p class="sub">Las áreas con plantas o logísticas se capturan y analizan por cada una.</p>
+     <div class="list">${DB.areas.map(a => `<div class="li"><div class="ico" style="background:${a.color}14;color:${a.color}">${icon(a.icon)}</div><div class="t"><b>${esc(a.name)}</b><span class="small">${DB.indicators.filter(i => i.areaId === a.id).length} indicadores · ${hasUnits(a) ? a.units.map(u => esc(u.name)).join(', ') : 'Sin plantas/logísticas'}</span></div>
+       <button class="btn sm icon ghost" data-act="areaEdit" data-id="${a.id}">${icon('edit')}</button><button class="btn sm icon ghost danger" data-act="areaDel" data-id="${a.id}">${icon('trash')}</button></div>`).join('')}</div>
+     <div style="margin-top:12px"><button class="btn" data-act="areaNew">${icon('plus')}Nueva área</button></div></div>
+   <div class="card"><h3>${icon('alert')}Semáforo</h3><p class="sub">Desviación permitida frente a la meta antes de marcar "No cumple".</p>
+     <div style="display:flex;flex-direction:column;gap:8px;font-size:12.5px"><div>${pill('ok')} alcanza o supera la meta</div><div>${pill('warn')} incumple dentro de la tolerancia</div><div>${pill('bad')} incumple por más de la tolerancia</div></div>
+     <label class="field inline" style="margin-top:14px">Tolerancia (%)<input type="number" min="0" max="50" step="0.5" style="width:80px" value="${DB.settings.tol}" data-bind="tol"></label></div></div>
+  <div class="card mt"><h3>${icon('save')}Datos</h3><p class="sub">La información se guarda en este navegador. Respáldala con regularidad.</p>
+   <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" data-act="backup">${icon('download')}Respaldar (JSON)</button><button class="btn" data-act="restore">${icon('upload')}Restaurar</button><button class="btn" data-act="expAll">${icon('sheet')}Exportar a Excel</button>
+   <button class="btn" data-act="demo">${icon('refresh')}Datos de ejemplo</button><button class="btn danger" data-act="clearData">${icon('trash')}Borrar resultados y planes</button></div></div>`;
 }

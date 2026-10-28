@@ -16,25 +16,13 @@ import {
 } from './views.js';
 import { buildXlsx, readAnyFile } from './excel.js';
 
-/* ============ Control de Tema (Oscuro/Claro) ============ */
-function applyTheme(theme) {
-  document.documentElement.setAttribute('data-theme', theme);
-  DB.settings.theme = theme;
-  saveDB();
-  const tb = $('[data-act="toggleTheme"]');
-  if (tb) {
-    const isDark = theme !== 'light';
-    tb.innerHTML = `${icon(isDark ? 'sun' : 'moon')} Modo ${isDark ? 'Claro' : 'Oscuro'}`;
-  }
-}
-
 /* ============ Render Principal ============ */
 export function render() {
   const V = VIEWS[UI.view];
   $('#ttl').textContent = V.t;
   $('#sub').textContent = V.s;
 
-  $$('.nav-item').forEach(b => {
+  $$('.nav').forEach(b => {
     const v = VIEWS[b.dataset.v];
     b.innerHTML = icon(v.i) + '<span>' + v.n + '</span>';
     b.classList.toggle('active', b.dataset.v === UI.view);
@@ -450,7 +438,6 @@ const rangeTo = m => Array.from({ length: m + 1 }, (_, i) => i);
 
 const ACTIONS = {
   nav: t => go(t.dataset.v),
-  toggleTheme: () => applyTheme(DB.settings.theme === 'light' ? 'dark' : 'light'),
   dashArea: t => { UI.dash.area = t.dataset.v; render(); },
   capArea: t => { UI.cap.area = t.dataset.v; UI.cap.unit = 'all'; render(); },
   capUnit: t => { UI.cap.unit = t.dataset.v; render(); },
@@ -720,9 +707,8 @@ document.addEventListener('change', e => {
       try {
         const o = JSON.parse(r.result);
         if (!o.areas || !o.indicators || !o.data) throw new Error();
-        setDB(Object.assign({ settings: { tol: 5, theme: 'dark' }, goals: {}, plans: [] }, o));
+        setDB(Object.assign({ settings: { tol: 5 }, goals: {}, plans: [] }, o));
         saveDB();
-        applyTheme(DB.settings.theme || 'dark');
         render();
         toast('Copia de seguridad restaurada');
       } catch (x) {
@@ -940,7 +926,7 @@ if (!stored || !stored.areas) {
   setDB(stored);
 }
 
-DB.settings = DB.settings || { tol: 5, theme: 'dark' };
+DB.settings = DB.settings || { tol: 5 };
 DB.goals = DB.goals || {};
 DB.plans = DB.plans || [];
 DB.areas.forEach(a => {
@@ -948,8 +934,6 @@ DB.areas.forEach(a => {
   a.ulabel = a.ulabel || 'Planta';
 });
 saveDB();
-
-applyTheme(DB.settings.theme || 'dark');
 
 UI.year = 2026;
 {
