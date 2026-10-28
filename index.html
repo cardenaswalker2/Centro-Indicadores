@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Centro de Indicadores y Gestión de Desempeño Operativo - Monitoreo de KPIs, análisis de desviaciones, planes de acción y sincronización Excel.">
+  <meta name="author" content="Equipo de Gestión y Control">
+  <title>Centro de Indicadores | Gestión y Desempeño Estratégico</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2'><path d='M4 20V10M10 20V4M16 20v-7M22 20H2'/></svg>">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar de Navegación -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo-box" id="logo"></div>
+        <div class="brand-info">
+          <b>Centro de Indicadores</b>
+          <span>Gestión de Desempeño</span>
+        </div>
+      </div>
+
+      <div class="nav-group-title">Monitoreo & Análisis</div>
+      <button class="nav-item" data-act="nav" data-v="dash"></button>
+      <button class="nav-item" data-act="nav" data-v="ana"></button>
+      <button class="nav-item" data-act="nav" data-v="plan"></button>
+
+      <div class="nav-group-title">Operación & Datos</div>
+      <button class="nav-item" data-act="nav" data-v="cap"></button>
+      <button class="nav-item" data-act="nav" data-v="goal"></button>
+      <button class="nav-item" data-act="nav" data-v="bulk"></button>
+      <button class="nav-item" data-act="nav" data-v="cat"></button>
+
+      <div class="nav-group-title">Configuración</div>
+      <button class="nav-item" data-act="nav" data-v="cfg"></button>
+
+      <div class="side-foot" id="sideFoot"></div>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <main>
+      <header class="topbar">
+        <div class="topbar-title">
+          <h1 id="ttl"></h1>
+          <p id="sub"></p>
+        </div>
+        <div class="topbar-controls">
+          <label class="field inline">
+            Año fiscal:
+            <select id="yearSel" data-bind="year"></select>
+          </label>
+        </div>
+      </header>
+
+      <!-- Vista Dinámica -->
+      <section id="view"></section>
+    </main>
+  </div>
+
+  <!-- Diálogos Modales, Toasts y Tooltip -->
+  <div id="modal"><div class="dlg" id="dlg"></div></div>
+  <div id="toast"></div>
+  <div id="tip"></div>
+
+  <!-- Inputs ocultos para subida de archivos -->
+  <input type="file" id="fileRestore" accept=".json" class="hide">
+  <input type="file" id="fileUp" accept=".xlsx,.xlsm,.csv,.txt" class="hide">
+
+  <!-- Script Modular Principal -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
